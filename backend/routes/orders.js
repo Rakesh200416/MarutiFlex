@@ -20,8 +20,44 @@ router.post('/', auth, async (req, res) => {
 // get all orders for logged-in user
 router.get('/', auth, async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.user.id }).sort({ dateCreated: -1 });
+    const orders = await Order.find({ user: req.user.id })
+      .populate('financialCreditibility')
+      .populate('managementApproval')
+      .populate('finalOrder')
+      .populate('arrangeVehicle')
+      .populate('billing')
+      .populate('receiptFromClient')
+      .populate('statusOfMaterial')
+      .populate('orderInvoice')
+      .populate('deliveryInfo')
+      .populate('feedback')
+      .sort({ dateCreated: -1 });
     res.json(orders);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// get single order by id (used by frontend details fetch)
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id)
+      .populate('financialCreditibility')
+      .populate('managementApproval')
+      .populate('finalOrder')
+      .populate('arrangeVehicle')
+      .populate('billing')
+      .populate('receiptFromClient')
+      .populate('statusOfMaterial')
+      .populate('orderInvoice')
+      .populate('deliveryInfo')
+      .populate('feedback');
+    if (!order) return res.status(404).json({ msg: 'Order not found' });
+    if (order.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+    res.json(order);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
