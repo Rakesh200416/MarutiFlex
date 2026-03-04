@@ -1,0 +1,854 @@
+/* ==================== MODERN CSS - MARUTI FLEX DASHBOARD ==================== */
+
+/* ============================================
+   GLOBAL RESET & BASE STYLES
+============================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 
+              'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 
+              -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #1e3c72;
+  background-attachment: fixed; /* keep background fixed during scroll */
+  min-height: 100vh;
+  overflow: hidden; /* prevent page scrolling/movement */
+  overscroll-behavior: none; /* disable scroll chaining / bounce */
+  touch-action: manipulation; /* reduce touch-based panning */
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* ensure root cannot be scrolled or dragged */
+}
+
+/* ============================================
+   APP LAYOUT
+============================================ */
+
+.App {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #1e3c72;
+  width: 100%;
+}
+
+/* ============================================
+   MODERN PROFESSIONAL NAVBAR
+============================================ */
+
+.navbar {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(135deg, #7AAACE 0%, #5a9cb5 100%) !important;
+  border-bottom: 2px solid rgba(53, 88, 114, 0.3) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(53, 88, 114, 0.15);
+  padding: 1rem 0 !important;
+}
+
+/* Navbar Brand */
+.navbar .navbar-brand {
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+  color: #FFFFFF !important;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand:hover {
+  color: #FFFFFF !important;
+  transform: scale(1.08) !important;
+  text-shadow: 0 4px 12px rgba(1, 135, 144, 0.3);
+}
+
+/* Nav Links */
+.navbar .nav-link {
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  color: #FFFFFF !important;
+  padding: 0.75rem 1.5rem !important;
+  margin: 0 0.5rem !important;
+  border-radius: 8px !important;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar .nav-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.navbar .nav-link:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.navbar .nav-link:hover {
+  background-color: #018790 !important;
+  color: #09ffeb !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(1, 135, 144, 0.4) !important;
+}
+
+.navbar .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #09ffeb !important;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Dropdown Menu */
+.navbar .dropdown-toggle::after {
+  display: none !important;
+}
+
+.navbar .dropdown-menu {
+  background: linear-gradient(135deg, rgba(156, 213, 255, 0.98) 0%, rgba(122, 170, 206, 0.98) 100%) !important;
+  border: 2px solid #355872 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 40px rgba(53, 88, 114, 0.25) !important;
+  padding: 0.75rem 0 !important;
+  backdrop-filter: blur(20px);
+}
+
+.navbar .dropdown-menu .dropdown-item {
+  color: #355872 !important;
+  font-weight: 500 !important;
+  font-size: 1.05rem !important;
+  padding: 0.9rem 1.8rem !important;
+  transition: all 0.3s ease !important;
+  border-left: 3px solid transparent;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: rgba(53, 88, 114, 0.15) !important;
+  color: #355872 !important;
+  border-left-color: #018790;
+  transform: translateX(4px) !important;
+}
+
+/* ============================================
+   MAIN CONTENT
+============================================ */
+
+.App main {
+  flex: 1 1 auto;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #9CD5FF 0%, #7AAACE 20%);
+  min-height: calc(100vh - 100px);
+  overflow: auto; /* allow content to scroll when taller than viewport */
+}
+
+.App main.default-main {
+  flex: 1 1 auto;
+}
+
+.App main.default-main > * {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.App main.login-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+/* ============================================
+   AMAZON-STYLE FOOTER
+============================================ */
+
+.amazon-footer {
+  background-color: #232f3e;
+  color: #FFFFFF;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  position: relative; /* place in document flow so it's at page end */
+  margin: 0;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+}
+
+.amazon-footer .back-to-top {
+  background-color: #131a22;
+  color: #ffffff;
+  text-align: center;
+  padding: 12px 0;
+  font-weight: 700;
+  cursor: pointer;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.amazon-footer .back-to-top:focus {
+  outline: 3px solid rgba(255, 216, 74, 0.25);
+  outline-offset: 2px;
+}
+
+.footer-top {
+  padding: 30px 60px 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important; /* force 4 columns on wide screens */
+  gap: 40px;
+  border-bottom: 1px solid #3a4553;
+}
+
+.footer-column {
+  min-width: 180px;
+}
+
+.footer-column h4 {
+  color: #FFFFFF;
+  font-size: 14px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #DDDDDD;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #ffd814;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  padding: 20px 60px;
+  background-color: #131a22;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  margin-right: 20px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.logo-accent {
+  color: #ffd814;
+}
+
+.footer-links {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links ul li {
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+
+.footer-links ul li a {
+  color: #999999;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.footer-links ul li a:hover {
+  color: #ffd814;
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin-left: 20px;
+}
+
+.footer-copyright p {
+  color: #999999;
+  font-size: 12px;
+  margin: 0;
+  text-align: right;
+}
+
+/* ============================================
+   MODERN TABLES
+============================================ */
+
+.table {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(53, 88, 114, 0.1);
+  margin-bottom: 2rem;
+}
+
+.table thead {
+  background: linear-gradient(135deg, #355872 0%, #2a4a60 100%);
+}
+
+.table thead th {
+  background: linear-gradient(135deg, #355872 0%, #2a4a60 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  border-color: #355872 !important;
+  padding: 1.25rem !important;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.table-striped tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(122, 170, 206, 0.1);
+}
+
+.table-striped tbody tr:hover {
+  background-color: rgba(122, 170, 206, 0.15) !important;
+  transform: scale(1.01);
+  box-shadow: inset 0 4px 12px rgba(122, 170, 206, 0.1);
+}
+
+.table tbody td {
+  color: #355872;
+  padding: 1rem !important;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ============================================
+   MODERN FORMS & INPUTS
+============================================ */
+
+.form-label {
+  color: #355872 !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  margin-bottom: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.form-control,
+.form-select {
+  border: 2px solid #7AAACE !important;
+  border-radius: 10px !important;
+  padding: 0.85rem 1.1rem !important;
+  font-size: 1.05rem !important;
+  transition: all 0.3s ease !important;
+  background-color: #FFFFFF !important;
+  color: #355872 !important;
+  font-weight: 500;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #018790 !important;
+  box-shadow: 0 0 0 0.2rem rgba(1, 135, 144, 0.25) !important;
+  transform: translateY(-2px);
+}
+
+.form-control::placeholder {
+  color: rgba(53, 88, 114, 0.5);
+  font-weight: 500;
+}
+
+/* ============================================
+   MODERN CARDS
+============================================ */
+
+.card {
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(53, 88, 114, 0.12);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  overflow: hidden;
+  background: #FFFFFF !important;
+}
+
+.card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 48px rgba(53, 88, 114, 0.2) !important;
+}
+
+.card-custom {
+  background-color: #FFFFFF !important;
+  border: 2px solid #7AAACE !important;
+  border-radius: 16px !important;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #7AAACE 0%, #5a9cb5 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  border: none !important;
+  padding: 1.5rem !important;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem !important;
+  font-size: 1.05rem;
+}
+
+/* ============================================
+   MODERN BUTTONS
+============================================ */
+
+.btn {
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  padding: 0.85rem 1.8rem !important;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border: none !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #355872 0%, #2a4a60 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(53, 88, 114, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #018790 0%, #016873 100%) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(1, 135, 144, 0.4) !important;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #7AAACE 0%, #5a9cb5 100%) !important;
+  color: #355872 !important;
+  box-shadow: 0 4px 15px rgba(122, 170, 206, 0.3);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #5a9cb5 0%, #4a8ca5 100%) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(122, 170, 206, 0.4) !important;
+}
+
+.btn-outline-primary {
+  color: #355872 !important;
+  border: 2px solid #355872 !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: #355872 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(53, 88, 114, 0.3) !important;
+}
+
+.btn-outline-danger {
+  color: #dc3545 !important;
+  border: 2px solid #dc3545 !important;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3) !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745 0%, #218838 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #218838 0%, #1d7e2a 100%) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4) !important;
+}
+
+/* ============================================
+   MODERN PAGE HEADER
+============================================ */
+
+.page-header {
+  background: linear-gradient(135deg, #7AAACE 0%, #355872 100%);
+  color: #FFFFFF;
+  padding: 2.5rem 2rem !important;
+  border-radius: 16px !important;
+  margin-bottom: 2.5rem !important;
+  box-shadow: 0 8px 32px rgba(53, 88, 114, 0.2);
+  border-left: 6px solid #018790;
+}
+
+.page-header h1,
+.page-header h2,
+.page-header h3 {
+  margin: 0 !important;
+  font-weight: 800 !important;
+  font-size: 2rem !important;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   MODERN CONTAINERS
+============================================ */
+
+.container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2rem !important;
+}
+
+.container-fluid {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   MODERN FORM CHECKS (RADIO/CHECKBOX)
+============================================ */
+
+.form-check {
+  padding-left: 0;
+  margin-bottom: 1.25rem;
+}
+
+.form-check-input {
+  width: 1.3em !important;
+  height: 1.3em !important;
+  margin-top: 0.25em !important;
+  border: 2px solid #7AAACE !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+}
+
+.form-check-input:checked {
+  background-color: #018790 !important;
+  border-color: #018790 !important;
+  box-shadow: 0 0 0 0.25rem rgba(1, 135, 144, 0.25) !important;
+}
+
+.form-check-input:hover {
+  border-color: #355872 !important;
+}
+
+.form-check-label {
+  color: #355872 !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  cursor: pointer;
+  margin-left: 0.75rem;
+  user-select: none;
+}
+
+/* ============================================
+   MODERN MODAL
+============================================ */
+
+.modal-content {
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 60px rgba(53, 88, 114, 0.3) !important;
+  background: #FFFFFF !important;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #7AAACE 0%, #355872 100%) !important;
+  border: none !important;
+  padding: 2rem !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.modal-title {
+  font-weight: 800 !important;
+  font-size: 1.4rem !important;
+  color: #FFFFFF !important;
+}
+
+.modal-header .btn-close {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 1;
+}
+
+/* custom link button used for popup triggers */
+.link-button {
+  background: none;
+  border: none;
+  color: #667eea;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+/* overlay for file-view modal (now managed by Modal.css) */
+/*
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+*/
+
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0 !important;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1.5rem !important;
+  }
+
+  .navbar .nav-link {
+    font-size: 1.1rem !important;
+    padding: 0.6rem 1.2rem !important;
+    margin: 0.25rem !important;
+  }
+
+  .App main {
+    padding-top: 90px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 130px;
+  }
+
+  .page-header {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .page-header h1,
+  .page-header h2,
+  .page-header h3 {
+    font-size: 1.6rem !important;
+  }
+
+  .card-header {
+    font-size: 1.1rem !important;
+  }
+
+  .table thead th {
+    font-size: 0.95rem !important;
+    padding: 1rem !important;
+  }
+
+  .form-label {
+    font-size: 1rem !important;
+  }
+
+  .container {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 0.5rem 0 !important;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1.2rem !important;
+  }
+
+  .navbar .nav-link {
+    font-size: 1.05rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+
+  .page-header {
+    padding: 1.5rem 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .page-header h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .table {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 1rem !important;
+    padding: 0.7rem 1.4rem !important;
+  }
+
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px 20px 30px;
+    gap: 25px;
+  }
+
+  .footer-column {
+    min-width: auto;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 15px 20px;
+  }
+
+  .footer-links ul {
+    justify-content: center;
+  }
+
+  .footer-links {
+    margin: 10px 0;
+  }
+
+  .footer-copyright {
+    margin-left: 0;
+  }
+
+  .footer-logo {
+    margin-right: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column {
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer-column ul {
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+/* ============================================
+   UTILITIES
+============================================ */
+
+.text-center {
+  text-align: center !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 16px 48px rgba(53, 88, 114, 0.2) !important;
+}
+
+.rounded-lg {
+  border-radius: 16px !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(122, 170, 206, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7AAACE 0%, #355872 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(122, 170, 206, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #018790 0%, #355872 100%);
+}

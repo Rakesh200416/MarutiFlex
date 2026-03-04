@@ -1,0 +1,747 @@
+/* Custom Navbar */
+.custom-navbar {
+  height: 60px;              
+  padding: 0 16px;
+  background: linear-gradient(90deg, #9CD5FF 0%, #7AAACE 100%) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+/* Make container contents align nicely */
+.custom-navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* (restored to original styles; no extra container height override) */
+
+/* Ensure brand and toggle don't wrap awkwardly */
+.navbar-brand-custom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-collapse {
+  /* do not forcibly override bootstrap's show/hide behavior globally
+     allow bootstrap to control display via the `.show` class */
+  align-items: center;
+  flex-wrap: wrap;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+/* On small screens ensure collapsed menu hides when not shown, and shows as block when open */
+@media (max-width: 992px) {
+  .custom-navbar {
+    border-bottom: none; /* no dark line on mobile */
+  }
+  .navbar-collapse {
+    display: none; /* hidden by default (collapsed) */
+    width: 100%;
+  }
+  .navbar-collapse.show {
+    display: block; /* shown when the .show class is toggled */
+    background: linear-gradient(90deg, #9CD5FF 0%, #7AAACE 100%);
+    position: fixed;
+    top: 60px; /* start right below the fixed navbar */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px); /* fill rest of viewport */
+    z-index: 900; /* lower than navbar so brand/toggler stay on top */
+    overflow-y: auto;
+    padding-top: 0; /* no padding, menu items start immediately */
+  }
+  .navbar-collapse.show .navbar-nav {
+    display: block; /* stack nav links vertically inside collapsed menu */
+  }
+  /* dropdown in mobile menu should not float and should blend into list */
+  .navbar-collapse.show .dropdown-menu {
+    position: static !important;
+    float: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar-collapse.show .dropdown-menu .dropdown-item {
+    padding-left: 24px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 10px;
+    margin: 6px 0;
+  }
+  .navbar-collapse.show .nav-link,
+  .navbar-collapse.show .nav-item-custom {
+    display: block;
+    width: 90%;
+    margin: 12px auto;
+    text-align: center;
+    background: rgba(255,255,255,0.25); /* slightly transparent white */
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 12px;
+    color: #fff !important;
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  @media (max-width: 576px) {
+    .navbar-collapse.show .nav-link,
+    .navbar-collapse.show .nav-item-custom {
+      font-size: 16px;
+      padding: 10px;
+    }
+  }
+  .navbar-collapse.show .nav-item-custom:hover {
+    background: rgba(255,255,255,0.6);
+  }
+  .navbar-toggler {
+    z-index: 1100; /* keep toggler above the collapsing menu */
+  }
+
+  /* ensure brand stays above everything on small screens */
+  .navbar-brand-custom {
+    z-index: 1100;
+  }
+
+  /* scale down logo/text a little on narrower devices */
+  .navbar-brand-custom .navbar-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .navbar-brand-custom .brand-text {
+    font-size: 16px;
+  }
+
+  /* backdrop that sits behind the mobile menu */
+  .mobile-menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 899; /* sit behind the menu but under navbar */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .mobile-menu-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.navbar-links {
+  display: flex;
+  gap: 6px;
+  flex: 1 1 auto;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar-user {
+  margin-left: 12px;
+  flex: 0 0 auto;
+}
+
+/* Navbar Brand Styling */
+.navbar-brand-custom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.6px;
+  transition: all 0.18s ease;
+  color: #1a1a1a !important;
+}
+
+.navbar-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 0;
+  background: none;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.brand-text { font-size: 18px; color: #e67009; letter-spacing: 0.4px; font-weight: 700; }
+
+.navbar-brand-custom:hover {
+  opacity: 0.95;
+  transform: scale(1.03);
+}
+
+/* Navbar Links Container */
+.navbar-links {
+  font-size: 16px !important;
+  margin-left: 8px;
+}
+
+/* Custom Nav Item Styling */
+.nav-item-custom {
+  font-size: 15px !important;
+  margin: 0 8px;
+  padding: 6px 12px !important;
+  border-radius: 8px;
+  transition: all 0.22s ease;
+  position: relative;
+  font-weight: 700;
+  color: rgba(26, 26, 26, 0.95) !important;
+}
+
+/* Hover State - Background Color Change */
+.nav-item-custom:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Active State - Box with White Border */
+.nav-item-custom.active,
+.nav-item-custom[aria-current="page"] {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 2px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  color: #fff !important;
+}
+
+/* Click/Active Link styling for NavLink */
+a.nav-item-custom.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 2px solid #fff;
+  color: #fff !important;
+}
+
+/* Override Bootstrap defaults */
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.95) !important;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff !important;
+}
+
+/* Navbar User Container */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+
+/* User Account Button */
+.user-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  color: #1a1a1a;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 15px;
+  transition: all 0.22s ease;
+}
+
+.user-account-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.user-account-btn:active {
+  transform: translateY(0);
+}
+
+.user-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1)) brightness(1.2);
+}
+
+.user-name {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* User Panel Overlay */
+.user-panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* User Side Panel */
+.user-side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-side-panel.active {
+  transform: translateX(0);
+}
+
+/* User Panel Header */
+.user-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  border-bottom: 2px solid #f0f0f0;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.user-panel-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.close-panel-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.close-panel-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* User Panel Content */
+.user-panel-content {
+  flex: 1;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* User Info */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f0f8 100%);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(30, 60, 114, 0.1);
+}
+
+.user-avatar {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #c34db7 0%, #da2caf 100%);
+  border-radius: 12px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(30, 60, 114, 0.3);
+}
+
+.user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-details h4 {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Panel Divider */
+.user-panel-divider {
+  height: 1px;
+  background: #e1e8ed;
+  margin: 14px 0;
+}
+
+/* User Panel Menu */
+.user-panel-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.user-panel-item {
+  display: block;
+  padding: 12px 14px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.user-panel-item:hover {
+  background: linear-gradient(135deg, #e8f0f8 0%, #f5f7fa 100%);
+  color: #1e3c72;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(30, 60, 114, 0.15);
+}
+
+/* Logout Button */
+.logout-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+}
+
+.logout-btn:hover {
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+  transform: translateY(-4px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .custom-navbar {
+    padding: 6px 12px;
+  }
+
+  .navbar-brand-custom {
+    font-size: 20px !important;
+  }
+
+  .nav-item-custom {
+    font-size: 15px !important;
+    margin: 0 6px;
+    padding: 6px 10px !important;
+  }
+
+  .user-account-btn {
+    padding: 6px 10px;
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .user-icon {
+    font-size: 18px;
+  }
+
+  /* hide long user name to save space on smaller screens */
+  .user-name {
+    display: none;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-navbar {
+    padding: 6px 8px;
+  }
+
+  .navbar-brand-custom {
+    font-size: 17px !important;
+  }
+
+  .nav-item-custom {
+    font-size: 13px !important;
+    margin: 0 4px;
+    padding: 6px 8px !important;
+  }
+
+  .user-account-btn {
+    padding: 6px 8px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .user-icon {
+    font-size: 16px;
+  }
+
+  .user-side-panel {
+    width: 100%;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    font-size: 13px;
+  }
+
+  .user-panel-header {
+    padding: 16px 12px;
+  }
+
+  .user-panel-header h3 {
+    font-size: 16px;
+  }
+
+  .user-panel-content {
+    padding: 12px;
+  }
+
+  .user-info {
+    padding: 12px;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .user-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .user-details h4 {
+    font-size: 14px;
+  }
+
+  .user-details p {
+    font-size: 12px;
+  }
+
+  .user-panel-item {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .logout-btn {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+}
+
+/* Hide Scrollbar */
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+html {
+  -ms-overflow-style: none;  /* Internet Explorer and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body {
+  -ms-overflow-style: none;  /* Internet Explorer and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Add padding to body to prevent content overlap with fixed navbar */
+#root {
+  /* leave space so content below doesn't overlap fixed navbar */
+  padding-top: 60px;
+}
+
+/* backdrop used when mobile menu is expanded */
+.mobile-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.mobile-menu-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Desktop / Laptop: reduce navbar vertical size when expanded */
+@media (min-width: 992px) {
+  .custom-navbar {
+    padding: 6px 16px;
+  }
+
+  .navbar-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-text {
+    font-size: 16px;
+  }
+
+  .nav-item-custom {
+    padding: 6px 10px !important;
+    font-size: 14px !important;
+  }
+
+  .user-account-btn {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+
+  .navbar-collapse.show {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* NavDropdown Styling */
+/* Style the dropdown toggle (title) to match nav-item-custom exactly */
+.navbar-links .dropdown-toggle {
+  font-size: 15px !important;
+  margin: 0 8px !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  transition: all 0.22s ease !important;
+  position: relative;
+  font-weight: 700 !important;
+  color: rgba(26, 26, 26, 0.95) !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Hide default Bootstrap arrow */
+.navbar-links .dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Fix navbar brand alignment only for mobile */
+@media (max-width: 576px) {
+
+  .custom-navbar {
+    height: 60px !important;   /* Keep same everywhere */
+    padding: 0 12px !important;
+  }
+
+  .custom-navbar .container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .navbar-brand-custom {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px !important;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar-logo {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .brand-text {
+    font-size: 14px !important;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .navbar-toggler {
+    padding: 4px 6px !important;
+  }
+
+}
+

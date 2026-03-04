@@ -1,0 +1,229 @@
+/* Settings page layout styles - modeled after Orders.css but scoped for settings */
+
+/* header styling */
+.header-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  color: #cccccc;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .header-subtitle {
+    display: none;
+  }
+}
+
+
+/* container card */
+.settings-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(156, 213, 255, 0.2);
+  overflow: hidden;
+  animation: slideUp 0.5s ease-out;
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 220px); /* leave space for header & stats */
+  max-height: calc(100vh - 220px);
+}
+
+.settings-card.full-height {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* two-column layout */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  gap: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ensure each column fills vertical space */
+.settings-layout > * {
+  height: 100%;
+  min-height: 0;   /* ensure children can scroll */
+}
+
+.order-list-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* vertical divider between columns */
+.settings-layout > :first-child {
+  border-right: 1px solid rgba(156, 213, 255, 0.2);
+}
+
+/* left panel scrollable list */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;                   /* allow flex child to shrink and scroll */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  padding-right: 8px;
+  background: #fafafa;
+  color: #333333;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* custom scrollbar */
+.settings-list::-webkit-scrollbar,
+.settings-details::-webkit-scrollbar,
+.order-list-body::-webkit-scrollbar {
+  width: 8px;
+}
+.settings-list::-webkit-scrollbar-track,
+.settings-details::-webkit-scrollbar-track,
+.order-list-body::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+.settings-list::-webkit-scrollbar-thumb,
+.settings-details::-webkit-scrollbar-thumb,
+.order-list-body::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 4px;
+}
+.settings-list::-webkit-scrollbar-track,
+.settings-details::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+.settings-list::-webkit-scrollbar-thumb,
+.settings-details::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 4px;
+}
+
+/* right panel scrollable details */
+.settings-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  padding: 0;
+  background: transparent;
+  color: #f1f5f9;
+}
+
+/* border between columns */
+.settings-layout > :first-child {
+  border-right: 2px solid rgba(156, 213, 255, 0.4);
+  overflow: hidden;
+}
+.settings-layout > :last-child {
+  padding-left: 16px;
+  overflow: hidden;
+}
+
+/* dashboard stats cards */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-stats .stat-card {
+  background: #1e3c72;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  min-height: 120px;
+}
+
+.dashboard-stats .stat-card .stat-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.dashboard-stats .stat-card .stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.settings-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(156, 213, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.settings-list-header h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* order/item styles can be reused from orders if desired, but keep the same class names or replicate here */
+.order-item {
+  cursor: pointer;
+  padding: 12px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  color: #333333;
+}
+
+.order-item.selected {
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.order-item-top,
+.order-item-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.settings-count {
+  font-weight: 600;
+  color: #7b8aaa;
+  margin-left: 8px;
+  background: rgba(156, 213, 255, 0.15);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* empty state for list */
+.empty-state {
+  text-align: center;
+  color: #6b7280;
+}
